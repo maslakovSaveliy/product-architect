@@ -1,0 +1,43 @@
+{
+  "$comment": "Run each prompt with the skill loaded; answers stand in for the owner's replies to intake. Check `expected` (must) and `forbidden` (must not).",
+  "scenarios": [
+    {
+      "id": "bar-loyalty-ru",
+      "prompt": "Хочу сделать сервис лояльности для баров: гости копят баллы через телеграм мини-апп, бармены начисляют баллы со своей панели, владелец видит статистику. Подбери стек и создай проект.",
+      "answers": "Рынок РФ, несколько баров (SaaS), бармен сканирует QR гостя, оплаты подписки баров позже, бюджет на хостинг ~2000 ₽/мес, скаффолди сам.",
+      "expected": [
+        "parts: web (Next web-template with telegram-mini-app + admin-ui or panel route group), backend (NestJS + Prisma + Postgres), bot (grammY)",
+        "separate repos under one product root, no monorepo",
+        "initData validated on the backend/server",
+        "points as append-only ledger",
+        "RU market: Postgres on RU VPS, login-method restrictions noted, legal-kit RU plan",
+        "architecture.md + decisions + scaffold-plan.json, then wait for approval before --execute"
+      ],
+      "forbidden": ["Turborepo/monorepo", "Tailwind", "Vercel/Railway as production hosting", "Fastify/Hono backend", "scaffolding before approval"]
+    },
+    {
+      "id": "coffee-landing-berlin",
+      "prompt": "Нужен лендинг для кофейни в Берлине с формой бронирования столика. Подбери стек и сделай проект.",
+      "answers": "Заявка уходит владельцу на почту, языки DE + EN, домена пока нет, сделаю сам по инструкции.",
+      "expected": [
+        "single web part from web-template; route handler for the booking form; no separate backend",
+        "i18n-multi-locale recipe (DE + EN)",
+        "EU/Germany: Impressum + Datenschutz via legal-kit, self-hosted fonts, cookieless analytics or consent",
+        "manual mode: numbered steps with commands and expected results, nothing executed"
+      ],
+      "forbidden": ["Astro", "Tailwind", "separate backend", "running scaffold"]
+    },
+    {
+      "id": "saas-global-subscriptions",
+      "prompt": "B2B SaaS: командный трекер OKR с подписками, для англоязычного рынка. Что выбрать?",
+      "answers": "Глобальный рынок, Stripe или аналог, команды до 50 человек, нужен Slack-уведомления раз в неделю, бюджет до $40/мес.",
+      "expected": [
+        "web part from web-template with auth + payments + postgres recipes",
+        "separate backend justified by scheduled jobs/integrations (NestJS + Prisma + BullMQ) OR explicitly argued in-app with a cron alternative",
+        "merchant-of-record (Paddle/LemonSqueezy) or Stripe Tax considered for global VAT",
+        "monthly hosting estimate within budget"
+      ],
+      "forbidden": ["microservices", "Tailwind", "no market/payments reasoning"]
+    }
+  ]
+}
