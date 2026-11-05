@@ -18,7 +18,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 
 ## Backend
 - **Default (no separate backend):** route handlers / server actions in the web app + Postgres + Drizzle (recipe `postgres-drizzle`). Monolith first.
-- **Separate backend when:** a bot or mobile app shares the domain, background jobs/queues, webhooks from many providers, heavy domain logic, or a second client. Then: **NestJS 11 + Prisma 7 + PostgreSQL 17 + BullMQ/Redis**, zod-validated env, pino logs, helmet, throttler, Swagger/OpenAPI (`/api/v1`), Jest unit + e2e per endpoint (200/400/401/403 IDOR).
+- **Separate backend when:** a bot or mobile app shares the domain, background jobs/queues, webhooks from many providers, heavy domain logic, or a second client. Then: **NestJS 11 + Prisma 7 + PostgreSQL 17 + BullMQ/Redis** (`createCommand`: `pnpm dlx @nestjs/cli new <slug> --package-manager pnpm --strict`, then swap ESLint/Prettier for Biome), zod-validated env, pino logs, helmet, throttler, Swagger/OpenAPI (`/api/v1`), Jest unit + e2e per endpoint (200/400/401/403 IDOR).
 - **BaaS (Supabase) when:** prototype/MVP with auth+storage+realtime needed in days and little custom logic, and the data residency of the chosen deployment fits the market. Prefer self-hosted for regulated markets.
 - Money: append-only ledger, integer minor units / Decimal, idempotency keys; webhooks verified (signature + IP allowlist where published).
 - IDs: UUID v7 for public ids; Telegram ids as bigint.
@@ -26,6 +26,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 
 ## Bot
 - **Default:** grammY + TypeScript, thin client of the backend (no business logic in the bot), conversations plugin for flows, webhook mode in prod.
+- **createCommand:** `pnpm init && pnpm add grammy @grammyjs/conversations zod && pnpm add -D typescript tsx @biomejs/biome vitest lefthook @types/node`, then copy CLAUDE.md sections from the web part and adapt commands.
 - **Deviate when:** MAX/other messenger required by market (separate adapter in backend).
 
 ## Telegram Mini App
@@ -38,7 +39,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 - **Swift (SwiftUI)** for iOS-only products that need deep platform features.
 
 ## Admin / back office
-- **Default:** route group in the web app with recipe `admin-ui` (Next + Mantine + mantine-datatable + recharts). Separate repo only if a different team or domain owns it.
+- **Default:** route group in the web app with recipe `admin-ui` (Next + Mantine + mantine-datatable + recharts). Mantine is allowed only inside the `(admin)` segment (owner prefers a ready UI kit for tables); public UI stays on SCSS tokens. Separate repo only if a different team or domain owns it.
 
 ## Desktop
 - Electron + electron-vite + React (Biome, Vitest, Playwright for Electron).

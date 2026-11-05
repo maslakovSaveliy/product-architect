@@ -4,7 +4,7 @@ Load only the section for the product's market(s). Legal content itself comes fr
 
 ## Russia (RU users)
 - **Data residency:** personal data of RU citizens must be first written to databases in Russia (152-FZ). → Postgres on an RU VPS; no foreign BaaS/auth/CRM/form tools as the first write; logs/backups/APM in RU or without PD.
-- **Login methods:** foreign identity providers (Google, Apple, GitHub) are restricted for RU users; allowed: phone OTP, Gosuslugi/ESIA, qualifying RU providers (VK ID, Yandex ID, Sber ID if they qualify), own email+password is disputed. Telegram login is likely non-compliant.
+- **Login methods:** foreign identity providers (Google, Apple, GitHub) are restricted for RU users; allowed: phone OTP, Gosuslugi/ESIA, qualifying RU providers (VK ID, Yandex ID, Sber ID if they qualify), own email+password is disputed. Telegram as the account login is likely non-compliant (Mini App `initData` inside Telegram: flag to `/legal-kit`, keep phone OTP as the account key).
 - **Payments:** YooKassa, T-Bank, CloudPayments, SBP; online-cash-register receipts (54-FZ) via provider; Mir/SBP acceptance above revenue threshold. Bank APIs may need the Russian Trusted Root CA in the container trust store.
 - **Analytics:** Yandex Metrika (consent-gated); foreign analytics create cross-border transfer obligations.
 - **Messengers:** Telegram widespread; MAX bots only for verified RU residents.

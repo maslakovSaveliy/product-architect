@@ -32,7 +32,7 @@
       "prompt": "B2B SaaS: командный трекер OKR с подписками, для англоязычного рынка. Что выбрать?",
       "answers": "Глобальный рынок, Stripe или аналог, команды до 50 человек, нужен Slack-уведомления раз в неделю, бюджет до $40/мес.",
       "expected": [
-        "web part from web-template with auth + payments + postgres recipes",
+        "web part from web-template with auth + payments recipes, plus postgres-drizzle if in-app or api-client-openapi if a separate backend owns the data",
         "separate backend justified by scheduled jobs/integrations (NestJS + Prisma + BullMQ) OR explicitly argued in-app with a cron alternative",
         "merchant-of-record (Paddle/LemonSqueezy) or Stripe Tax considered for global VAT",
         "monthly hosting estimate within budget"
