@@ -1,0 +1,12 @@
+{
+  "name": "product-architect",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Skill: decompose a product idea, pick a stack per part, scaffold from registered templates.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test 'scripts/**/*.test.mjs'",
+    "scaffold": "node scripts/scaffold.mjs"
+  }
+}

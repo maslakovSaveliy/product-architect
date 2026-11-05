@@ -1,0 +1,39 @@
+{
+  "$comment": "Templates product-architect can scaffold from. Add an entry per new template repo; no SKILL.md change needed. `init` placeholders: {slug} {title} {description} {url} {locale} {ci} {recipes}.",
+  "templates": [
+    {
+      "id": "web-next",
+      "part": "web",
+      "name": "web-template",
+      "description": "Next.js 16 web app: SCSS tokens, next-intl, TanStack Query + Zod, Vitest + Playwright, Docker + GitHub/GitLab CI, agent rules, recipes (Postgres Drizzle/Prisma, auth, payments, Telegram Mini App, admin UI, PWA...).",
+      "status": "stable",
+      "source": {
+        "local": "~/DEV/web-template",
+        "git": "https://github.com/maslakovSaveliy/web-template.git"
+      },
+      "install": "pnpm install",
+      "init": "pnpm template:init --name {slug} --title {title} --description {description} --url {url} --locale {locale} --ci {ci} --keep-recipes {recipes}",
+      "verify": "pnpm verify",
+      "options": {
+        "ci": ["github", "gitlab"],
+        "recipes": [
+          "postgres-drizzle",
+          "postgres-prisma",
+          "api-client-openapi",
+          "api-client",
+          "supabase",
+          "auth",
+          "payments",
+          "i18n-multi-locale",
+          "remote-messages",
+          "analytics-consent",
+          "pwa-push",
+          "admin-ui",
+          "telegram-mini-app",
+          "strict-csp"
+        ]
+      },
+      "covers": ["landing", "marketing site", "web app", "saas frontend", "telegram mini app (web)", "admin (via recipe)", "full-stack small app (route handlers + postgres-drizzle)"]
+    }
+  ]
+}
