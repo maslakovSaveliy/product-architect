@@ -1,6 +1,6 @@
 # Intake questions
 
-Ask only questions whose answer changes the decomposition or a stack choice. Skip anything the idea already answers. Max 5. Each question carries your proposed default so the owner can answer "ok".
+Ask only questions whose answer changes the decomposition or a stack choice. Skip anything the idea already answers. Max 4 (fits one interactive question round). Each question carries your proposed default so the owner can answer "ok".
 
 Delivery: if an interactive question tool is available (e.g. AskUserQuestion: ≤4 questions, 2–4 options each, recommended option first), use it. Otherwise one numbered message: `N. Question? → My default: X (because Y)`.
 

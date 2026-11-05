@@ -9,7 +9,8 @@ Each rule: **Default**, **Choose when** (observable condition), and what it chan
 
 ## 2. Monolith vs services
 - **Default:** one web app (modular monolith) with route handlers.
-- **Choose a separate backend when:** ≥2 clients share the domain (web + bot/mobile), long-running or scheduled jobs, queue-driven work, or many inbound webhooks.
+- **Choose a separate backend when:** ≥2 clients share the domain (web + bot/mobile), queue-driven or long-running work, several scheduled jobs, or many inbound webhooks.
+- **Stay in-app when:** the only background need is one light scheduled task (e.g. a weekly digest): a route handler protected by a secret, called by host cron or a CI schedule.
 - **Never:** microservices for a new product; split later along boundaries that proved stable.
 
 ## 3. Data store and ORM
@@ -25,7 +26,7 @@ Each rule: **Default**, **Choose when** (observable condition), and what it chan
 ## 5. Auth
 - **Default:** in the backend if there is one (JWT access + httpOnly refresh via BFF route handlers); otherwise `better-auth` in the web app.
 - Login methods are market-dependent (some markets restrict foreign identity providers): check `markets.md` and `/legal-kit`.
-- Telegram products: identity from server-validated `initData`; link accounts across channels with a one-time code.
+- Telegram products: inside the Mini App, identity comes from server-validated `initData`; link accounts across channels with a one-time code. Whether that may be the *only* account login depends on the market (RU: keep phone OTP as the account key and flag Telegram identity to `/legal-kit`).
 
 ## 6. Realtime / local-first
 - **Default:** none; refetch on focus/interval via TanStack Query.
