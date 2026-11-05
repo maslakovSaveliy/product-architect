@@ -63,7 +63,7 @@ if (!values.execute) {
   process.exit(0);
 }
 
-const env = { ...process.env, LEFTHOOK: '0' };
+const env = { ...process.env };
 for (const [i, step] of steps.entries()) {
   console.info(`→ ${i + 1}/${steps.length} ${describe(step)}`);
   switch (step.kind) {

@@ -55,7 +55,7 @@ describe('planScaffold', () => {
     });
     assert.deepEqual(
       steps.map((s) => s.kind),
-      ['mkdir', 'git-init', 'clone', 'rm-git', 'run', 'run', 'git-init', 'write'],
+      ['mkdir', 'git-init', 'clone', 'rm-git', 'git-init', 'run', 'run', 'write'],
     );
     assert.equal(steps[2].args.from, '/tpl/web');
     assert.equal(steps.at(-1)?.args.path, '.gitignore');

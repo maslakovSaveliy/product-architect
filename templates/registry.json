@@ -15,7 +15,10 @@
       "init": "pnpm template:init --name {slug} --title {title} --description {description} --url {url} --locale {locale} --ci {ci} --keep-recipes {recipes}",
       "verify": "pnpm verify",
       "options": {
-        "ci": ["github", "gitlab"],
+        "ci": [
+          "github",
+          "gitlab"
+        ],
         "recipes": [
           "postgres-drizzle",
           "postgres-prisma",
@@ -33,7 +36,15 @@
           "strict-csp"
         ]
       },
-      "covers": ["landing", "marketing site", "web app", "saas frontend", "telegram mini app (web)", "admin (via recipe)", "full-stack small app (route handlers + postgres-drizzle)"]
+      "covers": [
+        "landing",
+        "marketing site",
+        "web app",
+        "saas frontend",
+        "telegram mini app (web)",
+        "admin (via recipe)",
+        "full-stack small app (route handlers + postgres-drizzle)"
+      ]
     }
   ]
 }

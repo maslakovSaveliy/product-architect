@@ -50,10 +50,10 @@ const templateSteps = (template, part, partPath, exists) => {
   return [
     { kind: 'clone', cwd: partPath, args: { from } },
     { kind: 'rm-git', cwd: partPath, args: {} },
+    // git init before install: otherwise git (and lefthook) resolve the product root repo.
+    { kind: 'git-init', cwd: partPath, args: {} },
     { kind: 'run', cwd: partPath, args: { command: template.install } },
     { kind: 'run', cwd: partPath, args: { command: init } },
-    { kind: 'git-init', cwd: partPath, args: {} },
-    ...(template.afterGitInit ? [{ kind: 'run', cwd: partPath, args: { command: template.afterGitInit } }] : []),
   ];
 };
 
