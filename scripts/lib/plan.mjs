@@ -36,7 +36,7 @@ No registered template for the \`${part.part}\` part yet. Build it from the owne
 
 - Stack: ${part.stack ?? 'see docs/product/architecture.md'}
 - Create command: ${part.createCommand ?? 'see docs/product/architecture.md'}
-- Copy agent rules from the web part (CLAUDE.md sections: commands, invariants, approval list, testing, git, done report) and adapt commands.
+- Copy agent rules from the web part (AGENTS.md sections: commands, invariants, approval list, testing, git, project memory, done report) and adapt commands. Add \`CLAUDE.md\` and \`GEMINI.md\` stubs that only contain \`@AGENTS.md\`, and an empty \`docs/agents/memory.md\`.
 
 When this part stabilizes, turn it into a template repo and register it in product-architect \`templates/registry.json\`.
 `;

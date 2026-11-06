@@ -9,7 +9,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 - **Quality:** Biome (no ESLint/Prettier), lefthook + commitlint + secretlint, tests mandatory for every feature (Vitest/Jest + Playwright), CI gates merges.
 - **Git:** branches `feat/<slug>`, `fix/<slug>`; Conventional Commits; no AI attribution; commit/push/merge only on owner's word.
 - **Hosting:** cheap VPS per product (Docker Compose + Caddy/nginx), images built in CI and tagged by sha, manual deploy with health gate. Vercel only for throwaway previews.
-- **Docs in each repo:** CLAUDE.md (canonical) + AGENTS.md + `.cursor/rules`, `docs/decisions.md`, `docs/architecture.md`, handoff standard.
+- **Docs in each repo:** `AGENTS.md` (canonical, read by every agent) + `CLAUDE.md`/`GEMINI.md` stubs with `@AGENTS.md` + `.cursor/rules` pointing to AGENTS.md, `docs/agents/memory.md` (shared memory), `docs/decisions.md`, `docs/architecture.md`, handoff standard.
 
 ## Web (registered template `web-next`)
 - **Default:** Next.js 16 App Router from `web-template`: SCSS Modules on tokens (**no Tailwind**), next-intl (all texts in messages), TanStack Query + Zod + typed fetch, Zustand for UI state, react-hook-form, Vitest + Playwright (Chromium + WebKit) + axe.
@@ -26,7 +26,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 
 ## Bot
 - **Default:** grammY + TypeScript, thin client of the backend (no business logic in the bot), conversations plugin for flows, webhook mode in prod.
-- **createCommand:** `pnpm init && pnpm add grammy @grammyjs/conversations zod && pnpm add -D typescript tsx @biomejs/biome vitest lefthook @types/node`, then copy CLAUDE.md sections from the web part and adapt commands.
+- **createCommand:** `pnpm init && pnpm add grammy @grammyjs/conversations zod && pnpm add -D typescript tsx @biomejs/biome vitest lefthook @types/node`, then copy AGENTS.md sections from the web part and adapt commands.
 - **Deviate when:** MAX/other messenger required by market (separate adapter in backend).
 
 ## Telegram Mini App

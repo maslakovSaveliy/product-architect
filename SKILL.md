@@ -42,7 +42,7 @@ For each part, find a `stable` template in `templates/registry.json` by `part`. 
 In chat only (nothing on disk yet): parts table, one-line decisions, monthly hosting estimate, what is deliberately left out, product root path (`~/DEV/<slug>/` by default). **Wait for an explicit go-ahead.** Corrections → update and summarize again.
 
 ### 6. Scaffold or instruct
-After approval, in both modes write the product root docs: `docs/product/architecture.md`, `docs/decisions.md`, root `CLAUDE.md` cross-repo map (templates A–C).
+After approval, in both modes write the product root docs: `docs/product/architecture.md`, `docs/decisions.md`, root `AGENTS.md` cross-repo map with `CLAUDE.md`/`GEMINI.md` stubs that import it, and `docs/agents/memory.md` (templates A–C).
 - **Scaffold (default):** write `scaffold-plan.json` (template D) → `node scripts/scaffold.mjs --plan <root>/scaffold-plan.json` (dry run) → show the steps → after "yes", rerun with `--execute`. For template parts run the registry `verify` command and report results. Parts without a template get only a README from the script; run their `createCommand` inside that folder after the same "yes", then `git init -b main` there.
 - **Manual mode:** numbered steps per template E, one action each, with expected results. Run nothing beyond writing the docs above.
 
@@ -56,6 +56,7 @@ List next skills per part: `/legal-kit` (plan mode, for the market) before colle
 - One repo per part inside the product root. No monorepo unless `owner-defaults.md` "Deviate when" applies and you said so.
 - Web parts use the registered web template (SCSS tokens, no Tailwind). A different web stack needs a stated, product-specific reason.
 - Hosting: VPS + Docker by default with a cost estimate; managed platforms only on the owner's request.
+- Agent rules live in `AGENTS.md` in every repo (the owner uses several agents); `CLAUDE.md`/`GEMINI.md` only import it. Project facts go to `docs/agents/memory.md`, never only to one agent's private memory.
 - Repo content in English; talk to the owner in their language.
 
 ## Red flags: stop and re-check
