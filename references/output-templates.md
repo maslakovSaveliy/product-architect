@@ -3,7 +3,9 @@
 ## A. Product root
 ```
 ~/DEV/<product-slug>/            docs-only git repo
-  CLAUDE.md                      cross-repo map: parts, paths, how they talk, shared rules
+  AGENTS.md                      cross-repo map: parts, paths, how they talk, shared rules (canonical, every agent)
+  CLAUDE.md, GEMINI.md           stubs: a note + `@AGENTS.md` (Claude Code and Gemini import it; Codex/Cursor read AGENTS.md)
+  docs/agents/memory.md          shared memory for all agents (same format as the web template's)
   docs/product/architecture.md   template B
   docs/decisions.md              template C
   web/  backend/  bot/  app/     each its own git repo (ignored by the root .gitignore)
