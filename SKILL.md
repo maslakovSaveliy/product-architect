@@ -47,7 +47,7 @@ After approval, in both modes write the product root docs: `docs/product/archite
 - **Manual mode:** numbered steps per template E, one action each, with expected results. Run nothing beyond writing the docs above.
 
 ### 7. Handoff
-List next skills per part: `/legal-kit` (plan mode, for the market) before collecting personal data; `/impeccable` or `/frontend-design` for brand tokens; `/superpowers:brainstorming` → `/superpowers:writing-plans` for the first feature; `/nestjs-best-practices` + `/supabase-postgres-best-practices` for backend work. If the owner asks for an onboarding prompt, follow the handoff standard (template F).
+List next skills per part: `/legal-kit` (plan mode, for the market) before collecting personal data; `/impeccable` or `/frontend-design` for brand tokens; `/superpowers:brainstorming` → `/superpowers:writing-plans` for the first feature; `/nestjs-best-practices` + `/supabase-postgres-best-practices` for backend work. For each part whose stack has no skill in this list (mobile, desktop, bot, an unusual integration), run `/find-skills` for that stack and add what it finds to the part's next skills, marked installed or "install first"; never invent skill names. If the owner asks for an onboarding prompt, follow the handoff standard (template F).
 
 ## Hard rules
 
