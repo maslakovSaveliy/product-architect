@@ -39,7 +39,7 @@ Market constraints from `markets.md` override defaults (data residency, login me
 For each part, find a `stable` template in `templates/registry.json` by `part`. Pick its recipes from the stack decisions (e.g. `payments`, `telegram-mini-app`, `postgres-drizzle`, `api-client-openapi`). Several languages: `locale` = the default language, and keep the `i18n-multi-locale` recipe for the others. When a separate backend owns the data, the web part takes `api-client-openapi`, not a postgres recipe. Parts without a template get "build from defaults": stack + the exact `createCommand` from `owner-defaults.md`.
 
 ### 5. Summarize and stop for approval
-In chat only (nothing on disk yet): parts table, one-line decisions, monthly hosting estimate, what is deliberately left out, product root path (`~/DEV/<slug>/` by default). **Wait for an explicit go-ahead.** Corrections → update and summarize again.
+In chat only (nothing on disk yet): parts table, one-line decisions, performance budget per part (§13), monthly hosting estimate, what is deliberately left out, product root path (`~/DEV/<slug>/` by default). **Wait for an explicit go-ahead.** Corrections → update and summarize again.
 
 ### 6. Scaffold or instruct
 After approval, in both modes write the product root docs: `docs/product/architecture.md`, `docs/decisions.md`, root `AGENTS.md` cross-repo map with `CLAUDE.md`/`GEMINI.md` stubs that import it, and `docs/agents/memory.md` (templates A–C).
@@ -67,6 +67,7 @@ List next skills per part: `/legal-kit` (plan mode, for the market) before colle
 | "Astro/Vite/Tailwind is lighter for this landing" | The template is what the owner and agents already know; one stack wins. |
 | "Fastify/Hono is simpler than NestJS" | Separate backend = NestJS + Prisma (owner default). In-app logic = route handlers + Drizzle. |
 | "Vercel/Railway is easiest" | Owner hosts on a VPS with Docker; Vercel only for previews. |
+| "Add Redis/CDN/a second instance so it's fast" | `decision-rules.md` §13: only for a measured bottleneck; state the budget instead. |
 | "I'll set up the repo now and refine later" | Architecture approval first, dry run second, `--execute` third. |
 | "Market doesn't matter for the stack" | It decides data residency, login methods, payments, hosting region. |
 

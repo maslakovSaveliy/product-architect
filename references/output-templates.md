@@ -33,6 +33,9 @@
 ## Data
 <core entities, where personal data lives (region), money model>
 
+## Performance budget
+<per part: public web = CWV p75 (LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1) + first-load JS budget; API = p95 for key endpoints; which responses are personal (private, no-store) vs shareable; how it is measured (RUM behind consent, traces only with a process boundary)>
+
 ## Hosting and cost
 <VPS region/size, ~€ or ₽ per month, registry, backups>
 

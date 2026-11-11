@@ -6,6 +6,7 @@ Each rule: **Default**, **Choose when** (observable condition), and what it chan
 - **Default:** Next.js server rendering (static where possible) from the web template.
 - **Choose a client-heavy SPA approach when:** average session > ~10 minutes **and** 10+ updates of the same data per session (editors, dashboards, games). Even then keep Next, push interactivity into client islands; a separate Vite SPA only inside a native shell (Capacitor) or Electron.
 - Content/e-commerce/landing sites fail the SPA test: keep JS small.
+- Smooth page transitions alone do not justify an SPA: use view transitions as progressive enhancement. A SPA-like shell is justified when state must survive navigation (editors, live media, open sockets).
 
 ## 2. Monolith vs services
 - **Default:** one web app (modular monolith) with route handlers.
@@ -56,3 +57,14 @@ Each rule: **Default**, **Choose when** (observable condition), and what it chan
 
 ## 12. i18n
 - Always on (web template ships next-intl). **Multiple locales when:** the audience spans languages now (e.g. DE + EN in Germany); otherwise one locale, add later via recipe.
+
+## 13. Performance and scaling
+Every item here is a hypothesis until measured on the product; the web template's `docs/performance.md` holds the budgets and the measurement method. Put the budgets into the architecture doc (template B) so later agents test against them.
+- **Default:** one instance per part, no CDN, no read cache, no distributed tracing. Public web parts: Core Web Vitals at p75 (LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1), RUM via `next/web-vitals` behind analytics consent. APIs: p95 target for the key endpoints, a deadline on every outbound call, server pagination.
+- **Region:** app and database in the same region, chosen by market and data residency (§10). Latency per query multiplies by sequential queries.
+- **CDN when:** the audience is spread far from the server region **and** public pages/assets dominate traffic. Never for personal responses (`private, no-store`).
+- **Read cache (Redis cache-aside) when:** a repeated, staleness-tolerant read is measured as the bottleneck after pagination, query and index fixes. Keys include tenant and permissions; plan stampede protection and cache outage. This is a "concrete use" for Redis under §3.
+- **Second instance / load balancer when:** one instance's limit is measured, or the product needs high availability. The database stays the shared bottleneck; rate limits and sessions then need a shared store.
+- **Queue when:** work outlives a request (§7). The user sees a status: acceptance is not completion.
+- **Tracing (OpenTelemetry) when:** there is a process boundary (separate backend, worker, queue). One process: structured logs + profiler. Export through a Collector; no personal data in span attributes.
+- **Never as a stack driver:** HTTP/3, edge runtimes or a "faster" framework without a measured bottleneck they fix.

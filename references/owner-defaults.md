@@ -20,6 +20,7 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 - **Default (no separate backend):** route handlers / server actions in the web app + Postgres + Drizzle (recipe `postgres-drizzle`). Monolith first.
 - **Separate backend when:** a bot or mobile app shares the domain, background jobs/queues, webhooks from many providers, heavy domain logic, or a second client. Then: **NestJS 11 + Prisma 7 + PostgreSQL 17 + BullMQ/Redis** (`createCommand`: `pnpm dlx @nestjs/cli new <slug> --package-manager pnpm --strict`, then swap ESLint/Prettier for Biome), zod-validated env, pino logs, helmet, throttler, Swagger/OpenAPI (`/api/v1`), Jest unit + e2e per endpoint (200/400/401/403 IDOR).
 - **BaaS (Supabase) when:** prototype/MVP with auth+storage+realtime needed in days and little custom logic, and the data residency of the chosen deployment fits the market. Prefer self-hosted for regulated markets.
+- Performance baseline: deadline on every outbound call (retry only idempotent requests), cursor or keyset pagination with a max page size, no N+1 (query-count test), DB pool size × replicas below the connection limit. Caches and replicas only per `decision-rules.md` §13.
 - Money: append-only ledger, integer minor units / Decimal, idempotency keys; webhooks verified (signature + IP allowlist where published).
 - IDs: UUID v7 for public ids; Telegram ids as bigint.
 - Local dev ports avoid defaults: Postgres 5433, Redis 6380.
@@ -45,4 +46,5 @@ These are the owner's proven choices from past products. Use them unless a "Devi
 - Electron + electron-vite + React (Biome, Vitest, Playwright for Electron).
 
 ## Analytics / monitoring
+- Web Vitals RUM via `next/web-vitals` (no extra dependency) sent to own endpoint or the analytics tool, behind consent.
 - Self-hosted PostHog or Plausible/Umami behind consent (recipe `analytics-consent`); market-specific counters (e.g. Yandex Metrika) behind their own flag. Sentry with PII off; pino/structured logs; Loki optional.
